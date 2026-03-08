@@ -4,6 +4,8 @@
     font-family: "Geist", sans-serif;
 }
 
+@import "tailwindcss";
+
 body {
     background-color: #F8FAFC;
     display: flex;

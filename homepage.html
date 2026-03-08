@@ -5,10 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Issues Tracker</title>
+    <!-- Tailwind & Daisyui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="hompage.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <h2>GitHub Issues Tracker</h2>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="./assets/github-logo.png" alt="GitHub Logo">
+                <h2>GitHub Issues Tracker</h2>
+            </div>
+            <div class="search-box">
+                <!-- <div class="searchIcon">
+                    <input type="search" id="search" placeholder="Search issues..."><br>
+                    <i class="fa-solid fa-magnifying-glass search"></i>
+                </div> -->
+                <label class="input">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input type="search" required placeholder="Search" />
+                </label>
+                <button class="btn btn-primary">+ New Issue</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="btns" id="filter-btns">
+            <button onclick="filteredBtn('all')" class="active" id="all">All</button>
+            <button onclick="filteredBtn('opened')" class="inactive" id="opened">Open</button>
+            <button onclick="filteredBtn('closed')" class="inactive" id="closed">Closed</button>
+        </div>
+
+        <div class="issueBox">
+            <div class="issue">
+                <div>
+                    <div>
+                        <img src="./assets/Group 1.png" alt="">
+                    </div>
+
+                    <div>
+                        <h2><span id="issueCount">50</span> Issues</h2>
+                        <p>Track and manage your project issues</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="blocks">
+                <div>
+                    <div><img src="./assets/green.png" alt=""></div>
+                    <p>Open</p>
+                </div>
+                <div>
+                    <div><img src="./assets/purple.png" alt=""></div>
+                    <p>Closed</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="issueCards" id="issueCardContainer">
+
+        </div>
+    </main>
+    <script src="./script.js"></script>
 </body>
 
 </html>
