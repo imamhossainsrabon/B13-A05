@@ -5,10 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B13-A5-Github-Issue-Tracker</title>
+
+    <!-- Tailwind & Daisi UI -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- StyleSheet LINKEd -->
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    Just Setup EnvironMnet
+    <div class="login-form">
+        <div class="logo">
+            <img src="./assets/github-logo.png" alt="">
+            <h2>GitHub Issues Tracker</h2>
+            <p>Sign in to manage your issues</p>
+        </div>
+
+        <div class="form">
+            <label>Username</label><br>
+            <input type="text" id="username" placeholder="Enter Username" minlength="5" maxlength="5"><br>
+            <p>Default: admin</p>
+            <label>Password</label>
+            <input type="password" name="" id="password" placeholder="Enter Password" minlength="8" maxlength="8">
+            <p>Default: admin123</p>
+        </div>
+        <button id="login-btn">Sign In</button>
+
+        <div class="hr">
+            <hr>
+            <p>OR</p>
+            <hr>
+        </div>
+        <p class="demoCre">Demo Credentials:</p>
+
+        <div class="Credentials">
+            <p><b>Username</b>: admin</p>
+            <p><b>Password</b>: admin123</p>
+        </div>
+    </div>
 </body>
 
 </html>
