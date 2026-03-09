@@ -40,3 +40,16 @@ function showLoader() {
 function hideLoader() {
     document.getElementById('loader').classList.add('hidden')
 }
+
+async function loadIssues() {
+    showLoader()
+    issueCardContainer.innerHTML = ''
+
+    const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
+    const data = await res.json()
+
+    allIssues = data.data || []
+    applyFilterAndRender()
+
+    hideLoader()
+}
