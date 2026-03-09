@@ -5,13 +5,6 @@ const closedBtn = document.getElementById('closed')
 
 const issueCardContainer = document.getElementById('issueCardContainer')
 const issueCount = document.getElementById('issueCount')
-
-function issueCounting() {
-    issueCount.innerHTML = issueCardContainer.children.length
-}
-
-issueCounting()
-
 const searchInput = document.getElementById('search')
 const modalContent = document.getElementById('modalContent')
 
@@ -69,4 +62,56 @@ function renderWithLoader() {
         applyFilterAndRender()
         hideLoader()
     }, 200)
+}
+
+function applyFilterAndRender() {
+    let filteredIssues = allIssues
+
+    if (currentFilter === 'opened') {
+        filteredIssues = allIssues.filter(function (issue) {
+            return issue.status === 'open'
+        })
+    } else if (currentFilter === 'closed') {
+        filteredIssues = allIssues.filter(function (issue) {
+            return issue.status === 'closed'
+        })
+    }
+
+    const searchValue = searchInput.value.trim().toLowerCase()
+
+    if (searchValue !== '') {
+        filteredIssues = filteredIssues.filter(function (issue) {
+            const titleMatch = issue.title.toLowerCase().includes(searchValue)
+            const descriptionMatch = issue.description.toLowerCase().includes(searchValue)
+            const authorMatch = issue.author.toLowerCase().includes(searchValue)
+
+            let labelMatch = false
+
+            issue.labels.forEach(function (label) {
+                if (label.toLowerCase().includes(searchValue)) {
+                    labelMatch = true
+                }
+            })
+
+            return titleMatch || descriptionMatch || authorMatch || labelMatch
+        })
+    }
+
+    renderIssues(filteredIssues)
+    updateIssueCount(filteredIssues)
+}
+
+function renderIssues(issues) {
+    issueCardContainer.innerHTML = ''
+
+    if (issues.length === 0) {
+        issueCardContainer.innerHTML = `<p class="message">No issues found.</p>`
+        return
+    }
+
+    issues.forEach(function (issue) {
+        const div = document.createElement('div')
+        div.innerHTML = createCard(issue)
+        issueCardContainer.appendChild(div.firstElementChild)
+    })
 }
