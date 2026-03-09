@@ -115,3 +115,50 @@ function renderIssues(issues) {
         issueCardContainer.appendChild(div.firstElementChild)
     })
 }
+
+function createLabels(labels) {
+    let allLabels = ''
+
+    labels.forEach(function (label) {
+        let labelClass = 'label-default'
+
+        if (label.toLowerCase() === 'bug') {
+            labelClass = 'label-bug'
+        } else if (label.toLowerCase() === 'help wanted') {
+            labelClass = 'label-help-wanted'
+        } else if (label.toLowerCase() === 'enhancement') {
+            labelClass = 'label-enhancement'
+        }
+
+        allLabels += `<span class="label ${labelClass}">${label.toUpperCase()}</span>`
+    })
+
+    return allLabels
+}
+
+function getPriorityClass(priority) {
+    let priorityClass = ''
+
+    if (priority === 'high') {
+        priorityClass = 'high'
+    } else if (priority === 'medium') {
+        priorityClass = 'medium'
+    } else {
+        priorityClass = 'low'
+    }
+
+    return priorityClass
+}
+
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.slice(0, maxLength) + '...'
+    }
+
+    return text
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US')
+}
