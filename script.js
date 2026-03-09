@@ -12,20 +12,6 @@ function issueCounting() {
 
 issueCounting()
 
-function filteredBtn(id) {
-    allBtn.classList.add('inactive')
-    openedBtn.classList.add('inactive')
-    closedBtn.classList.add('inactive')
-
-    allBtn.classList.remove('active')
-    openedBtn.classList.remove('active')
-    closedBtn.classList.remove('active')
-
-    const selected = document.getElementById(id)
-    selected.classList.add('active')
-    selected.classList.remove('inactive')
-}
-
 const searchInput = document.getElementById('search')
 const modalContent = document.getElementById('modalContent')
 
@@ -52,4 +38,35 @@ async function loadIssues() {
     applyFilterAndRender()
 
     hideLoader()
+}
+
+function updateIssueCount(issueArray) {
+    issueCount.innerText = issueArray.length
+}
+
+function filteredBtn(id) {
+    allBtn.classList.add('inactive')
+    openedBtn.classList.add('inactive')
+    closedBtn.classList.add('inactive')
+
+    allBtn.classList.remove('active')
+    openedBtn.classList.remove('active')
+    closedBtn.classList.remove('active')
+
+    const selected = document.getElementById(id)
+    selected.classList.add('active')
+    selected.classList.remove('inactive')
+
+    currentFilter = id
+    renderWithLoader()
+}
+
+function renderWithLoader() {
+    showLoader()
+    issueCardContainer.innerHTML = ''
+
+    setTimeout(function () {
+        applyFilterAndRender()
+        hideLoader()
+    }, 200)
 }
